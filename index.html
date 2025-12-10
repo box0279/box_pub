@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box.pub | 观象授时</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
-    
     <style>
         /* 冰蓝道蕴风格 */
         body {
@@ -39,11 +38,11 @@
         </article>
         <div class="footer">&copy; 2025 Box.pub | 观象授时</div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('content.md?v=' + Date.now()) // 加时间戳防缓存
+            // 加时间戳防止缓存
+            fetch('content.md?v=' + Date.now())
                 .then(r => {
                     if (!r.ok) throw new Error("404: content.md 未找到");
                     return r.text();
