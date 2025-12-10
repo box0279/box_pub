@@ -6,95 +6,79 @@
     <title>Box.pub | 问道记录</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
     <style>
-        /* === 深蓝之梦雨滴风格 (Deep Blue Dream & CSS Rain) === */
+        /* === 静谧水球风格 (Static Blue Orbs) === */
         body {
             margin: 0; padding: 0; min-height: 100vh;
-            /* 1. 背景色：深蓝之梦 (径向渐变模拟夜空与深海) */
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex; justify-content: center; align-items: center;
-            overflow-x: hidden; /* 防止雨丝溢出 */
+            
+            /* 1. 背景色：深邃夜空底色 */
+            background-color: #0f172a; 
+            
+            /* 2. 核心魔法：用 CSS 绘制三个静态的大水球 (光斑) */
+            background-image: 
+                /* 水球 A (左上，明亮的天青色) */
+                radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 45%),
+                /* 水球 B (右下，深邃的海蓝色) */
+                radial-gradient(circle at 85% 80%, rgba(30, 64, 175, 0.25) 0%, rgba(15, 23, 42, 0) 50%),
+                /* 水球 C (中间偏左，柔和的紫色调，增加层次) */
+                radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.1) 0%, rgba(15, 23, 42, 0) 40%);
+                
+            background-attachment: fixed; /* 视差效果：滚动时水球不动 */
+            background-repeat: no-repeat;
         }
 
-        /* 2. 纯 CSS 雨滴动画效果 */
-        /* 使用伪元素创建一个覆盖层 */
-        body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 150%; /* 高度加大以实现无缝滚动 */
-            pointer-events: none; /* 确保不挡住鼠标点击 */
-            /* 使用重复线性渐变绘制倾斜的雨丝 */
-            background-image: repeating-linear-gradient(
-                170deg, /* 下雨的角度 */
-                transparent,
-                transparent 10px,
-                rgba(137, 196, 244, 0.08) 10px, /* 极淡的发光蓝雨丝 */
-                rgba(137, 196, 244, 0.08) 11px
-            );
-            /* 雨落动画：向下向右无限循环移动 */
-            animation: rain-fall 1.5s infinite linear;
-            opacity: 0.8;
-            z-index: 0;
-        }
-
-        /* 雨落关键帧动画 */
-        @keyframes rain-fall {
-            from { transform: translateY(0) translateX(0); }
-            to { transform: translateY(-50px) translateX(10px); }
-        }
-
-        /* 3. 主容器：暗色冰蓝玻璃 */
+        /* 3. 主容器：磨砂玻璃 (参数微调以适应静态背景) */
         .glass-container {
             width: 100%; max-width: 1000px; 
             margin: 40px 20px;
             height: 85vh; 
             display: flex;
             
-            /* 背景改为极淡的深色半透明，透出后面的深蓝 */
-            background: rgba(0, 0, 0, 0.25);
-            /* 核心：高斯模糊 */
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            /* 背景极淡，透出后面的水球 */
+            background: rgba(15, 23, 42, 0.3);
+            /* 模糊度加大，让背景的水球变成柔和的晕影 */
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             
-            /* 边框改为发光的细蓝线 */
-            border: 1px solid rgba(137, 196, 244, 0.15);
+            /* 边框：极细的微光边框 */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15); /* 顶部稍微亮一点，模拟光源 */
             border-radius: 24px;
             
-            /* 增加内部幽蓝光晕和外部深投影 */
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.5), 
-                inset 0 0 30px rgba(137, 196, 244, 0.05);
+            /* 阴影：深邃的悬浮感 */
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
             overflow: hidden; 
-            position: relative; z-index: 1; /* 确保在雨上面 */
         }
 
         /* 4. 左侧菜单栏 */
         .sidebar {
             width: 250px;
-            background: rgba(0, 0, 0, 0.2); /* 比主容器稍深 */
-            border-right: 1px solid rgba(137, 196, 244, 0.1);
+            background: rgba(0, 0, 0, 0.2); 
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px; overflow-y: auto; display: flex; flex-direction: column;
         }
         
         .sidebar h3 {
-            margin-top: 0; color: #89c4f4; /* 亮蓝色标题 */
+            margin-top: 0; color: #bae6fd; /* 浅蓝标题 */
             font-size: 1.1rem; font-weight: 700;
-            border-bottom: 2px solid rgba(137, 196, 244, 0.3);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
             padding-bottom: 10px; letter-spacing: 1px;
         }
 
         .menu-link {
             display: block; padding: 10px 15px; margin-bottom: 8px;
-            color: #a0aec0; /* 浅灰蓝色文字 */
+            color: #94a3b8; /* 灰蓝文字 */
             text-decoration: none; border-radius: 12px;
             transition: all 0.3s ease; font-size: 14px; cursor: pointer;
             word-break: break-all; border: 1px solid transparent;
         }
         
-        /* 悬停激活状态：发光蓝 */
+        /* 悬停状态 */
         .menu-link:hover, .menu-link.active {
-            background: rgba(137, 196, 244, 0.1);
-            color: #fff; /* 高亮文字变白 */
-            border-color: rgba(137, 196, 244, 0.3);
-            box-shadow: 0 0 15px rgba(137, 196, 244, 0.1); /* 发光效果 */
+            background: rgba(56, 189, 248, 0.1);
+            color: #fff; 
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
         }
 
         /* 5. 右侧内容区 */
@@ -105,46 +89,41 @@
             scroll-behavior: smooth;
         }
 
-        /* === 6. Markdown 深色模式适配 (关键) === */
-        /* 强制背景透明 */
+        /* 6. Markdown 深色模式适配 */
         .markdown-body { background-color: transparent !important; }
-        /* 正文颜色：灰白 */
         .markdown-body, .markdown-body p { color: #e2e8f0 !important; font-size: 16px; line-height: 1.8; }
-        /* 标题颜色：亮白 */
-        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #f7fafc !important; border-bottom-color: rgba(255,255,255,0.1) !important; }
+        .markdown-body h1, .markdown-body h2 { color: #f0f9ff !important; border-bottom-color: rgba(255,255,255,0.1) !important; }
         
-        /* 链接：高亮发光蓝 */
-        .markdown-body a { color: #63b3ed !important; text-decoration: none; border-bottom: 1px dashed rgba(99, 179, 237, 0.5); transition: all 0.2s; }
-        .markdown-body a:hover { color: #90cdf4 !important; text-shadow: 0 0 5px rgba(144, 205, 244, 0.6); border-bottom-style: solid; }
+        /* 链接：天青色 */
+        .markdown-body a { color: #38bdf8 !important; text-decoration: none; border-bottom: 1px dashed rgba(56, 189, 248, 0.5); }
+        .markdown-body a:hover { color: #7dd3fc !important; border-bottom-style: solid; }
         
-        /* 引用块：蓝调 */
+        /* 引用块 */
         .markdown-body blockquote {
-            border-left: 4px solid #4299e1 !important;
-            background: rgba(66, 153, 225, 0.1) !important;
+            border-left: 4px solid #0ea5e9 !important;
+            background: rgba(14, 165, 233, 0.1) !important;
             padding: 10px 15px; color: #cbd5e0 !important;
         }
         
-        /* 代码块背景调暗 */
-        .markdown-body pre, .markdown-body code.fenced-code { background-color: rgba(0,0,0,0.4) !important; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        /* 代码块 */
+        .markdown-body pre, .markdown-body code.fenced-code { background-color: rgba(0,0,0,0.4) !important; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
 
         /* 手机端适配 */
         @media (max-width: 768px) {
             body { align-items: flex-start; }
             .glass-container { flex-direction: column; height: auto; margin: 15px; max-width: 100%; }
-            .sidebar { width: 100%; height: auto; max-height: 220px; border-right: none; border-bottom: 1px solid rgba(137, 196, 244, 0.1); }
+            .sidebar { width: 100%; height: auto; max-height: 220px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
             .content-area { padding: 20px; height: auto; }
         }
 
-        /* 底部和加载提示 */
-        .footer { text-align: center; margin-top: 50px; font-size: 12px; color: rgba(255,255,255,0.3); }
-        #loading { text-align: center; color: #89c4f4; margin-top: 80px; font-weight: 500; letter-spacing: 2px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .footer { text-align: center; margin-top: 50px; font-size: 12px; color: rgba(255,255,255,0.2); }
+        #loading { text-align: center; color: #38bdf8; margin-top: 80px; font-weight: 500; letter-spacing: 2px; }
         
-        /* 滚动条美化 (Webkit) */
+        /* 滚动条 (Webkit) */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        ::-webkit-scrollbar-thumb { background: rgba(137, 196, 244, 0.3); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(137, 196, 244, 0.5); }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.4); }
     </style>
 </head>
 <body>
@@ -159,7 +138,7 @@
 
         <main class="content-area">
             <article id="content" class="markdown-body">
-                <div id="loading">← 请点选一篇，静心阅读。</div>
+                <div id="loading">← 请点选一篇，如观静水。</div>
             </article>
             <div class="footer">&copy; 2025 Box.pub | 问道不息</div>
         </main>
