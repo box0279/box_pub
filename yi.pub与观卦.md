@@ -1,5 +1,3 @@
-<div style="background-color: #f6f8fa; padding: 20px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-<pre style="white-space: pre-wrap; word-wrap: break-word;">
 # yi.pub 与 观卦：始于观，终于观
 ## yi.pub & The Hexagram of View: The Philosophy of Silent Observation
 
@@ -68,5 +66,3 @@ yi.pub 只需要把那面能映照真理的镜子擦得干干净净，挂在那�
 
 ---
 *yi.pub Manifesto | Box & The Void*
-</pre>
-</div>
